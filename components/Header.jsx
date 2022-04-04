@@ -11,7 +11,7 @@ function Header(props) {
   return (
     <header
       className=" sticky top-0 z-50 shadow-md py-5 px-5
-    md:px-10 grid grid-cols-3"
+    md:px-10 grid grid-cols-3 bg-white"
     >
       {/* left */}
       <div className="relative h-10 flex items-center my-auto">
@@ -39,10 +39,10 @@ function Header(props) {
         <p className="md:hover:bg-gray-300 transition ease-in-out select-none md:inline hidden  p-2 rounded-full ">
           Become a host
         </p>
-        <GlobeIcon className="h-6 lg:h-9 md:hover:bg-gray-300 ease-in-out 0.3  rounded-full" />
+        <GlobeIcon className="h-6 lg:h-9 md:hover:bg-gray-300 text-red-400 ease-in-out 0.3  rounded-full" />
 
         <div
-          className="flex flex-row justify-around rounded-full p-2 text border-2
+          className="flex flex-row text-red-400 justify-around rounded-full p-2 text border-2
         md:hover:shadow-lg"
         >
           <MenuIcon className="h-6 lg:h-9" />

@@ -2,9 +2,11 @@ import Head from "next/head";
 import Image from "next/image";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
+import { LargeCard, MediumCard, SmallCard } from "../components/Card";
 import styles from "../styles/Home.module.css";
+import Footer from "../components/Footer";
 
-export default function Home() {
+export default function Home({ dataExplore, dataLiveAnywhere }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,6 +16,50 @@ export default function Home() {
       </Head>
       <Header />
       <Banner />
+      <main className="max-w-7xl mx-auto px-10 sm:pl-15">
+        <section className="">
+          <h2 className="font-semibold text-3xl py-8">Explore nearby</h2>
+          <div className="grid grid-cols-1 space-x-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
+            {dataExplore?.map((card, i) => {
+              return <SmallCard key={i} data={card} />;
+            })}
+          </div>
+        </section>
+        <section>
+          <h2 className="font-semibold text-3xl py-8">Live anywhere</h2>
+          <div className="flex items-center space-x-3 overflow-scroll scrollbar-hide">
+            {dataLiveAnywhere?.map((live, i) => {
+              return <MediumCard key={i} data={live} />;
+            })}
+          </div>
+        </section>
+        <LargeCard
+          data={{
+            img: "https://links.papareact.com/4cj",
+            title: "The greated outdoor",
+            description: "Wishlists curated by Nhat Long",
+            buttonText: "Go inspired",
+          }}
+        />
+      </main>
+      <div className="bg-gray-100">
+        <Footer />
+      </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const dataExplore = await fetch("https://links.papareact.com/pyp").then(
+    (res) => res.json()
+  );
+  const dataLiveAnywhere = await fetch("https://links.papareact.com/zp1").then(
+    (res) => res.json()
+  );
+  return {
+    props: {
+      dataExplore,
+      dataLiveAnywhere,
+    },
+  };
 }
