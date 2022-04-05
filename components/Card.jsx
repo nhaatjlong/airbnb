@@ -6,16 +6,10 @@ export function SmallCard({ data }) {
   return (
     <div
       className={`flex flex-row items-center space-x-5 mt-2 sm:mt-3 lg:mt-4 xl:mt-5 cursor-pointer
-    hover:bg-gray-300 hover:scale-105 p-2 transition duration-200 ease-out rounded-xl`}
+    hover:bg-gray-300 hover:scale-105  md:p-2 transition duration-200 ease-out rounded-xl`}
     >
-      <div className={``}>
-        <Image
-          src={img}
-          alt="explpore"
-          width={100}
-          height={100}
-          className="rounded-xl"
-        />
+      <div className={`relative h-32 w-32 `}>
+        <Image src={img} alt="explpore" layout="fill" className="rounded-xl" />
       </div>
       <div className={``}>
         <h1 className="font-semibold">{location}</h1>
@@ -30,7 +24,7 @@ export function MediumCard({ data }) {
   return (
     <div
       className={`flex flex-col items-center space-x-5 mt-2 sm:mt-3 lg:mt-4 xl:mt-5 cursor-pointer
-    hover:bg-gray-300 hover:scale-105 p-2 transition duration-200 ease-out rounded-xl`}
+     hover:scale-105 p-2 transition duration-200 ease-out rounded-xl`}
     >
       <div className={`relative h-80 w-80`}>
         <Image src={img} alt="explpore" layout="fill" className="rounded-xl" />
