@@ -16,7 +16,7 @@ export default function Home({ dataExplore, dataLiveAnywhere }) {
       </Head>
 
       <Banner />
-      <main className="max-w-7xl mx-auto px-10 sm:pl-15">
+      <main className="max-w-7xl mx-auto px-5 sm:pl-15">
         <section className="">
           <h2 className="font-semibold text-3xl py-8">Explore nearby</h2>
           <div className="grid grid-cols-1 space-x-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">

@@ -42,12 +42,12 @@ export function LargeCard({ data }) {
       className={` mt-2 sm:mt-3 lg:mt-4 xl:mt-5 relative
      py-8  transition duration-200 ease-out rounded-xl`}
     >
-      <div className={`relative min-w-[350px]  h-80`}>
+      <div className={`relative min-w-[330px] h-72`}>
         <Image src={img} alt="explpore" layout="fill" className="rounded-xl" />
       </div>
-      <div className={`absolute top-10 left-8 max-w-xs space-y-3`}>
-        <h1 className="font-semibold text-4xl">{title}</h1>
-        <p className="font-bold">{description}</p>
+      <div className={`absolute top-12 left-8 max-w-xs space-y-3`}>
+        <h1 className="font-semibold text-2xl">{title}</h1>
+        <p className="font-bold text-xs">{description}</p>
         <button className="bg-slate-900 text-white px-4 py-2 font-bold active:scale-x-95 transition duration-150 rounded-full">
           {buttonText}
         </button>

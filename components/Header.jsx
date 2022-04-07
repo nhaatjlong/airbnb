@@ -53,9 +53,9 @@ function Header(props) {
     md:px-10 grid grid-cols-3 bg-white"
     >
       {/* left */}
-      <div className="relative h-10 w-6/12 flex items-center my-auto">
+      <div className="relative h-10 w-full md:w-4/12 flex items-center my-auto">
         <Image
-          className="cursor-pointer w-fit"
+          className="cursor-pointer "
           src="https://links.papareact.com/qd3"
           layout="fill"
           alt="logo airbnb"
@@ -70,7 +70,7 @@ function Header(props) {
         <input
           value={inputSearch}
           onChange={(e) => setInputSearch(e.target.value)}
-          className="outline-none w-11/12 text-sm placeholder-gray-400 text-gray-600 ml-1"
+          className="outline-none w-11/12 text-xs sm:text-sm placeholder-gray-400 text-gray-600 ml-1"
           type="text"
           placeholder={valueHolder}
         />
@@ -95,9 +95,10 @@ function Header(props) {
       <div
         className={`  ${
           inputSearch
-            ? "flex flex-col col-span-3 sm:mx-auto transition ease-linear duration-1000  p-2 h-max"
+            ? "flex flex-col max-w-[376px] overflow-scroll sm:max-w-fit sm:overflow-visible col-span-3 sm:mx-auto  transition ease-linear duration-1000  p-2 h-max"
             : "hidden"
         }`}
+        style={{ maxWidth: "" }}
       >
         <DateRangePicker
           rangeColors={["#FD5B61"]}
