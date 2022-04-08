@@ -7,6 +7,7 @@ import {
   UserIcon,
   GlobeIcon,
   UsersIcon,
+  LogoutIcon,
 } from "@heroicons/react/solid";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -14,12 +15,22 @@ import { DateRangePicker } from "react-date-range";
 import { useRouter } from "next/router";
 import PlaceHolderContainer from "../containers/placeHoder";
 import { useContainer } from "unstated-next";
+import AuthContainer from "../containers/auth";
+
 function Header(props) {
   const [inputSearch, setInputSearch] = useState("");
+
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+
   const [totalGuest, setTotalGuest] = useState(1);
+
   const router = useRouter();
+
+  const { valueHolder, onChangeValueHolder } =
+    useContainer(PlaceHolderContainer);
+  const { isAuthenticated, setIsAuthenticated } = useContainer(AuthContainer);
+
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -30,9 +41,11 @@ function Header(props) {
     setStartDate(range.selection.startDate);
     setEndDate(range.selection.endDate);
   };
+
   useEffect(() => {
     router.pathname === "/" && onChangeValueHolder("Start your search");
   }, [router.pathname]);
+
   const handleSearch = () => {
     setInputSearch(``);
     router.push({
@@ -45,8 +58,7 @@ function Header(props) {
       },
     });
   };
-  const { valueHolder, onChangeValueHolder } =
-    useContainer(PlaceHolderContainer);
+
   return (
     <header
       className=" sticky top-0 z-50 shadow-md py-5 px-5
@@ -79,7 +91,7 @@ function Header(props) {
       {/* right */}
       <div className="flex flex-row items-center justify-end cursor-pointer space-x-4 text-gray-500">
         <p className="md:hover:bg-gray-300 transition ease-in-out select-none md:inline hidden  p-2 rounded-full ">
-          Become a host
+          {isAuthenticated ? isAuthenticated?.Du?.tf : "Host now"}
         </p>
         <GlobeIcon className="h-6 lg:h-9 md:hover:bg-gray-300 text-red-400 ease-in-out 0.3  rounded-full" />
 
@@ -90,6 +102,15 @@ function Header(props) {
           <MenuIcon className="h-6 lg:h-9" />
           <UserCircleIcon className="h-6 lg:h-9" />
         </div>
+        {isAuthenticated && (
+          <LogoutIcon
+            className="h-6 text-red-400"
+            onClick={() => {
+              localStorage.removeItem("airbnb");
+              setIsAuthenticated(false);
+            }}
+          />
+        )}
       </div>
 
       <div

@@ -1,11 +1,21 @@
-import React from 'react';
+import { useEffect, useState } from "react";
+import { createContainer } from "unstated-next";
+import { reactLocalStorage } from "reactjs-localstorage";
 
 function Authentication(props) {
-    return (
-        <div>
-            
-        </div>
-    );
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  useEffect(() => {
+    localStorage.getItem("airbnb")
+      ? setIsAuthenticated(JSON.parse(localStorage.getItem("airbnb")))
+      : false;
+  }, []);
+
+  return {
+    isAuthenticated,
+
+    setIsAuthenticated,
+  };
 }
 
-export default auth;
+const AuthContainer = createContainer(Authentication);
+export default AuthContainer;

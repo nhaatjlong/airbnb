@@ -5,6 +5,7 @@ import "../styles/globals.css";
 import PlaceHolderContainer from "../containers/placeHoder";
 import ProgressBar from "@badrap/bar-of-progress";
 import Router from "next/router";
+import AuthContainer from "../containers/auth";
 
 function MyApp({ Component, pageProps }) {
   const progress = new ProgressBar({
@@ -20,11 +21,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <PlaceHolderContainer.Provider>
-      <Header />
-      <Component {...pageProps} />
-      <div className="bg-gray-100">
-        <Footer />
-      </div>
+      <AuthContainer.Provider>
+        <Component {...pageProps} />
+      </AuthContainer.Provider>
     </PlaceHolderContainer.Provider>
   );
 }
