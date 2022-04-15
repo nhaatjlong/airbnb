@@ -4,6 +4,9 @@ import { reactLocalStorage } from "reactjs-localstorage";
 
 function Authentication(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
+
+  
+
   useEffect(() => {
     localStorage.getItem("airbnb")
       ? setIsAuthenticated(JSON.parse(localStorage.getItem("airbnb")))

@@ -3,7 +3,7 @@ import Login from "../components/Login";
 
 function LoginPage(props) {
   return (
-    <div>
+    <div className=" relative min-h-screen  py-10 ">
       <Login />
     </div>
   );

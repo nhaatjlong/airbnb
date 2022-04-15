@@ -1,12 +1,13 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import SearchResult from "../components/SearchResult";
 
 function SearchPage({ dataSearch }) {
   const router = useRouter();
   const { location, noOfGuests } = router.query;
-
   return (
     <React.Fragment>
       <div>
@@ -17,7 +18,9 @@ function SearchPage({ dataSearch }) {
         </Head>
       </div>
       <div>
+        <Header />
         <SearchResult dataSearch={dataSearch} />
+        <Footer />
       </div>
     </React.Fragment>
   );

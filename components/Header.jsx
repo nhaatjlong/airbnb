@@ -12,10 +12,13 @@ import {
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import PlaceHolderContainer from "../containers/placeHoder";
 import { useContainer } from "unstated-next";
 import AuthContainer from "../containers/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slice/auth";
+import LoadingContainer from "../containers/loading";
 
 function Header(props) {
   const [inputSearch, setInputSearch] = useState("");
@@ -26,10 +29,14 @@ function Header(props) {
   const [totalGuest, setTotalGuest] = useState(1);
 
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   const { valueHolder, onChangeValueHolder } =
     useContainer(PlaceHolderContainer);
   const { isAuthenticated, setIsAuthenticated } = useContainer(AuthContainer);
+
+  const { handleLoadingGlobal } = LoadingContainer.useContainer();
 
   const selectionRange = {
     startDate: startDate,
@@ -86,31 +93,40 @@ function Header(props) {
           type="text"
           placeholder={valueHolder}
         />
-        <SearchIcon className="h-8 hidden md:inline-flex select-none active:scale-90 transition duration-150 mr-2 cursor-pointer text-white bg-red-400 rounded-full p-1" />
+        <SearchIcon
+          className="h-8 hidden md:inline-flex select-none active:scale-90 transition duration-150 mr-2 cursor-pointer text-white bg-red-400 rounded-full p-1"
+          onClick={handleSearch}
+        />
       </div>
       {/* right */}
       <div className="flex flex-row items-center justify-end cursor-pointer space-x-4 text-gray-500">
         <p className="md:hover:bg-gray-300 transition ease-in-out select-none md:inline hidden  p-2 rounded-full ">
-          {isAuthenticated ? isAuthenticated?.Du?.tf : "Host now"}
+          {"Host now"}
         </p>
-        <GlobeIcon className="h-6 lg:h-9 md:hover:bg-gray-300 text-red-400 ease-in-out 0.3  rounded-full" />
+        <GlobeIcon className="h-6 lg:h-9 md:hover:bg-gray-300 text-red-400   rounded-full" />
 
         <div
-          className="flex flex-row text-red-400 justify-around rounded-full p-2 text border-2
+          className="flex flex-row text-red-400 justify-around rounded-full p-1 text border-2
         md:hover:shadow-lg"
         >
-          <MenuIcon className="h-6 lg:h-9" />
-          <UserCircleIcon className="h-6 lg:h-9" />
+          <MenuIcon className="h-6 lg:h-8" />
+          <UserCircleIcon className="h-6 lg:h-8" />
         </div>
-        {isAuthenticated && (
-          <LogoutIcon
-            className="h-6 text-red-400"
-            onClick={() => {
-              localStorage.removeItem("airbnb");
-              setIsAuthenticated(false);
-            }}
-          />
-        )}
+
+        <LogoutIcon
+          className="h-6 lg:h-8 text-red-400 md:hover:bg-gray-300 rounded-full p-1"
+          onClick={() => {
+            try {
+              handleLoadingGlobal(true);
+              dispatch(logout());
+            } catch (error) {
+              alert("Co loi xay ra");
+            } finally {
+              handleLoadingGlobal(false);
+              router.push("/");
+            }
+          }}
+        />
       </div>
 
       <div
