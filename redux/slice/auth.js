@@ -80,6 +80,7 @@ const authSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.isLoggedIn = false;
+      state.isLoading = false;
     },
     [register.rejected]: (state, action) => {
       state.isLoggedIn = false;
