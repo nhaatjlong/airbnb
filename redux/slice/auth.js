@@ -11,7 +11,7 @@ if (typeof window !== "undefined") {
 }
 
 const initialState = user
-  ? { isLoggedIn: true, user }
+  ? { isLoggedIn: true, user, isLoading: false }
   : { isLoggedIn: false, user: null };
 
 export const handleAuthenticated = createAsyncThunk(
@@ -75,20 +75,30 @@ const authSlice = createSlice({
     [handleAuthenticated.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
     },
+    [register.pending]: (state, action) => {
+      state.isLoading = true;
+    },
     [register.fulfilled]: (state, action) => {
       state.isLoggedIn = false;
     },
     [register.rejected]: (state, action) => {
       state.isLoggedIn = false;
     },
+
+    [login.pending]: (state, action) => {
+      state.isLoading = true;
+    },
     [login.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
+      state.isLoading = false;
     },
     [login.rejected]: (state, action) => {
       state.isLoggedIn = false;
       state.user = null;
+      state.isLoading = false;
     },
+
     [logout.fulfilled]: (state, action) => {
       state.isLoggedIn = false;
       state.user = null;

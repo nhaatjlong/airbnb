@@ -54,16 +54,18 @@ function Header(props) {
   }, [router.pathname]);
 
   const handleSearch = () => {
-    setInputSearch(``);
-    router.push({
-      pathname: "/search",
-      query: {
-        location: inputSearch,
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString(),
-        noOfGuests: totalGuest,
-      },
-    });
+    if (inputSearch) {
+      setInputSearch(``);
+      router.push({
+        pathname: "/search",
+        query: {
+          location: inputSearch,
+          startDate: startDate.toISOString(),
+          endDate: endDate.toISOString(),
+          noOfGuests: totalGuest,
+        },
+      });
+    } else return;
   };
 
   return (

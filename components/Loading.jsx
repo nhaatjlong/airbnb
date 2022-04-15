@@ -1,13 +1,15 @@
 import LoadingOverlay from "react-loading-overlay";
+import { useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import LoadingContainer from "../containers/loading";
 
 export default function MyLoading(props) {
   const { loadingGlobal } = LoadingContainer.useContainer();
+  const { isLoading } = useSelector((state) => state.auth);
   return (
     <div
       className={` ${
-        loadingGlobal
+        isLoading
           ? "block fixed z-[500] left-0 top-0 w-full h-full overflow-auto bg-[#000000] bg-opacity-50"
           : "hidden"
       }`}

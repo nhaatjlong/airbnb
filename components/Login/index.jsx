@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { ErrorMessage, FastField, Field, Form, Formik } from "formik";
 import Image from "next/image";
@@ -7,23 +7,11 @@ import { initialValues, validationLogin } from "./validationLogin";
 import LoginWithGoogle from "./usingGoogle";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/slice/auth";
-import LoadingContainer from "../../containers/loading";
 
 function Login(props) {
-  const { loadingGlobal, handleLoadingGlobal } =
-    LoadingContainer.useContainer();
   const dispatch = useDispatch();
-
   const handleSubmitform = (formValue, action) => {
-    const promise = new Promise((resolve) => {
-      handleLoadingGlobal(true);
-      dispatch(login(formValue));
-      resolve();
-    });
-    promise.then(() => {
-      // handleLoadingGlobal(false);
-      console.log("promise then");
-    });
+    dispatch(login(formValue));
   };
 
   return (
