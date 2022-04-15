@@ -11,8 +11,8 @@ const LoadingContain = () => {
   };
 
   useEffect(() => {
-    const x = setTimeout(() => setLoadingGlobal(false), 2000);
-    return () => clearTimeout(x);
+    // const x = setTimeout(() => setLoadingGlobal(false), 2000);
+    // return () => clearTimeout(x);
   }, [loadingGlobal]);
 
   return {

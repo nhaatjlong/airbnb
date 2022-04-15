@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import {
   SearchIcon,
@@ -19,6 +19,7 @@ import AuthContainer from "../containers/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slice/auth";
 import LoadingContainer from "../containers/loading";
+import useClickOutside from "../hooks/useClickOutside";
 
 function Header(props) {
   const [inputSearch, setInputSearch] = useState("");
@@ -67,6 +68,9 @@ function Header(props) {
       });
     } else return;
   };
+  const [show, setShow] = useState(false);
+  const modalRef = useRef();
+  useClickOutside(modalRef, () => setShow(false));
 
   return (
     <header
@@ -101,34 +105,45 @@ function Header(props) {
         />
       </div>
       {/* right */}
-      <div className="flex flex-row items-center justify-end cursor-pointer space-x-4 text-gray-500">
-        <p className="md:hover:bg-gray-300 transition ease-in-out select-none md:inline hidden  p-2 rounded-full ">
+      <div className="flex flex-row items-center justify-end space-x-4 text-gray-500">
+        <p className="md:hover:bg-gray-300 cursor-pointer  transition ease-in-out select-none md:inline hidden  p-2 rounded-full ">
           {"Host now"}
         </p>
-        <GlobeIcon className="h-6 lg:h-9 md:hover:bg-gray-300 text-red-400   rounded-full" />
+        <GlobeIcon className="h-6 lg:h-9 hidden md:inline-flex md:hover:bg-gray-300 text-red-400 cursor-pointer rounded-full" />
 
         <div
-          className="flex flex-row text-red-400 justify-around rounded-full p-1 text border-2
+          className="flex flex-row relative text-red-400 cursor-pointer  justify-around rounded-full p-1 text border-2
         md:hover:shadow-lg"
+          onClick={() => setShow(true)}
         >
           <MenuIcon className="h-6 lg:h-8" />
           <UserCircleIcon className="h-6 lg:h-8" />
+
+          {show && (
+            <div
+              className="absolute top-9 md:top-11 rounded-lg text-red-400 bg-black p-2"
+              ref={modalRef}
+            >
+              <ul
+                className="select-none space-y-2 "
+                onClick={() => setShow(!show)}
+              >
+                <li>User</li>
+                <div className="border-b border-white "></div>
+                <li className="md:hidden" onClick={() => dispatch(logout())}>
+                  Logout
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
 
-        <LogoutIcon
-          className="h-6 lg:h-8 text-red-400 md:hover:bg-gray-300 rounded-full p-1"
-          onClick={() => {
-            try {
-              handleLoadingGlobal(true);
-              dispatch(logout());
-            } catch (error) {
-              alert("Co loi xay ra");
-            } finally {
-              handleLoadingGlobal(false);
-              router.push("/");
-            }
-          }}
-        />
+        <div>
+          <LogoutIcon
+            className="h-6 lg:h-8 text-red-400 cursor-pointer  md:hover:bg-gray-300 lg:rounded-2xl p-1 hidden md:inline  "
+            onClick={() => dispatch(logout())}
+          />
+        </div>
       </div>
 
       <div
