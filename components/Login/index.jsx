@@ -27,7 +27,7 @@ function Login(props) {
   };
 
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-lg px-10 py-5 hover:scale-105 transition ease-linear">
       <div className="max-w-[300px] min-w-[230px]">
         <div className="relative h-[60px] w-full text-white mb-5">
           <Image src="/airbnb.png" alt="logo" layout="fill" />
@@ -85,6 +85,17 @@ function Login(props) {
                   </Link>
                   <div className="mb-5 w-full  border-b border-b-gray-300"></div>
                   <LoginWithGoogle />
+                  <div
+                    onClick={() =>
+                      handleSubmitform({
+                        email: "user02@demo.com",
+                        password: "123123",
+                      })
+                    }
+                    className="bg-red-400 text-white px-4 py-2 mt-10 cursor-pointer rounded-lg hover:bg-red-600"
+                  >
+                    Start testing without login
+                  </div>
                 </div>
               </Form>
             );

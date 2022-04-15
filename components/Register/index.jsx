@@ -22,7 +22,7 @@ function RegisterForm(props) {
   };
 
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
+    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-lg px-10 py-5 hover:scale-105 transition ease-linear">
       <div className="max-w-[300px] min-w-[230px]">
         <div className="relative h-[60px] w-full text-white mb-5">
           <Image src="/airbnb.png" alt="logo" layout="fill" />
