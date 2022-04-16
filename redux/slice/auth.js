@@ -74,7 +74,17 @@ const authSlice = createSlice({
   extraReducers: {
     [handleAuthenticated.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
+      state.isLoading = false;
     },
+    [handleAuthenticated.pending]: (state, action) => {
+      state.isLoading = true;
+      state.isLoggedIn = true;
+    },
+    [handleAuthenticated.rejected]: (state, action) => {
+      state.isLoggedIn = true;
+      state.isLoading = false;
+    },
+
     [register.pending]: (state, action) => {
       state.isLoading = true;
     },
@@ -84,6 +94,7 @@ const authSlice = createSlice({
     },
     [register.rejected]: (state, action) => {
       state.isLoggedIn = false;
+      state.isLoading = false;
     },
 
     [login.pending]: (state, action) => {
