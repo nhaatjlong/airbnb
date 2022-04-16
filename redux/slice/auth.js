@@ -111,9 +111,11 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
 
+    [logout.pending]: (state, action) => {},
     [logout.fulfilled]: (state, action) => {
       state.isLoggedIn = false;
       state.user = null;
+      Router.push("/");
     },
   },
 });
