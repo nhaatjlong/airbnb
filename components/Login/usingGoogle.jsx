@@ -13,7 +13,7 @@ const LoginWithGoogle = () => {
     handleLoadingGlobal(false);
   };
   const handleError = (err) => {
-    alert("Error: ", err);
+    alert("Error: Có lỗi xảy ra");
   };
   return (
     <GoogleLogin
