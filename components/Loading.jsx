@@ -15,7 +15,7 @@ export default function MyLoading(props) {
       }`}
     >
       <LoadingOverlay active={true} spinner={true} text="loading ...">
-        {/* <p>Some content or children or something.</p> */}
+        {" "}
       </LoadingOverlay>
     </div>
   );

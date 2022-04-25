@@ -1,0 +1,15 @@
+.main {
+  background-image: url("https://banahills.sunworld.vn/wp-content/uploads/2020/03/L%C3%A0ng-ph%C3%A1p-6-1024x737.jpg");
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.arrow_bottom {
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid hsla(0, 0%, 100%, 0.9);
+  height: 10px;
+  position: absolute;
+  width: 10px;
+  top: 20px;
+}

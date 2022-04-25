@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ErrorMessage, FastField, Field, Form, Formik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +9,9 @@ import { login } from "../../redux/slice/auth";
 
 function Login(props) {
   const dispatch = useDispatch();
-  const handleSubmitform = (formValue, action) => {
+
+  const handleSubmitform = (formValue) => {
+    console.log(formValue);
     dispatch(login(formValue));
   };
 
@@ -92,6 +93,87 @@ function Login(props) {
         <br />
       </div>
     </div>
+    // <section className="grid grid-cols-1 gap-0 lg:grid-cols-10 ">
+    //   <div className="col-span-1 lg:col-span-6">
+    //     <img
+    //       src="https://images.unsplash.com/photo-1531548731165-c6ae86ff6491?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"
+    //       alt="3 women looking at a laptop"
+    //       className="object-cover w-full max-h-[100%] "
+    //       loading="lazy"
+    //     />
+    //   </div>
+    //   <div className="w-full col-span-1 p-4 mx-auto mt-6 lg:col-span-4 xl:p-12 sm:w-2/4 lg:w-full">
+    //     <h1 className="mt-6 mb-4 text-xl font-light text-left text-gray-800">
+    //       Log in to your account
+    //     </h1>
+    //     <Formik
+    //       className="pb-1 space-y-4"
+    //       initialValues={initialValues}
+    //       validationSchema={validationLogin}
+    //       onSubmit={handleSubmitform}
+    //     >
+    //       {() => (
+    //         <Form>
+    //           <label className="block">
+    //             <span className="block mb-1 text-xs font-medium text-gray-700">
+    //               Your Email
+    //             </span>
+    //             <FastField
+    //               className="form-input"
+    //               type="email"
+    //               placeholder="Ex. james@bond.com"
+    //               inputMode="email"
+    //               name="email"
+    //               required
+    //             />
+    //           </label>
+    //           <label className="block">
+    //             <span className="block mb-1 text-xs font-medium text-gray-700">
+    //               Your Password
+    //             </span>
+    //             <FastField
+    //               className="form-input"
+    //               type="password"
+    //               placeholder="••••••••"
+    //               required
+    //               name="password"
+    //             />
+    //           </label>
+    //           <div className="flex items-center justify-between">
+    //             <label className="flex items-center">
+    //               <input
+    //                 type="checkbox"
+    //                 className="form-checkbox text-red-400 active:border-none"
+    //               />
+    //               <span className="block ml-2 text-xs font-medium text-gray-700 cursor-pointer">
+    //                 Remember me
+    //               </span>
+    //             </label>
+    //             <FastField
+    //               type="submit"
+    //               className="btn bg-red-400 text-white"
+    //               value="Login"
+    //             />
+    //           </div>
+    //         </Form>
+    //       )}
+    //     </Formik>
+    //     <div className="my-6 space-y-2">
+    //       <p className="text-xs text-gray-600">
+    //         Don't have an account?
+    //         <Link href="/register">
+    //           <a className="text-red-400 hover:text-black">Create an account</a>
+    //         </Link>
+    //       </p>
+    //       <a href="#" className="block text-xs text-red-400 hover:text-black">
+    //         Forgot password?
+    //       </a>
+    //       <a href="#" className="block text-xs text-red-400 hover:text-black">
+    //         Privacy & Terms
+    //       </a>
+    //     </div>
+    //   </div>
+    // </section>
   );
 }
 

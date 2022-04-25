@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
+const path = require("path");
 const nextConfig = {
   reactStrictMode: false,
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
+  },
   images: {
-    domains: ["links.papareact.com"],
+    domains: ["links.papareact.com", "images.unsplash.com"],
   },
   env: {
     mapbox_key:
